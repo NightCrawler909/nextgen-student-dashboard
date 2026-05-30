@@ -23,8 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} dark`}>
-      <body className="min-h-screen bg-bg-base text-text-primary antialiased">
+    <html lang="en" className={`${dmSans.variable} dark`} suppressHydrationWarning>
+      <body className="min-h-screen bg-bg-base text-text-primary antialiased" suppressHydrationWarning>
         {children}
       </body>
     </html>
