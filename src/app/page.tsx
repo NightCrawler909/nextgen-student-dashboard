@@ -44,10 +44,10 @@ function Skeletons() {
 
 export default async function DashboardPage() {
   return (
-    <div className="flex h-screen bg-bg-base overflow-hidden">
+    <div className="flex h-screen bg-bg-base overflow-hidden w-full">
       <Sidebar />
-      <main className="flex-1 min-w-0 flex flex-col overflow-y-auto p-4 md:p-6 pb-24 md:pb-6">
-        <div className="flex-1">
+      <main className="flex-1 min-w-0 w-full flex flex-col overflow-y-auto overflow-x-hidden p-4 md:p-6 pb-24 md:pb-6">
+        <div className="flex-1 w-full max-w-full">
           <BentoGrid>
             <HeroTile name="Alex" streak={14} />
             <Suspense fallback={<Skeletons />}>

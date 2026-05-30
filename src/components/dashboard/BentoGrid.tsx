@@ -37,7 +37,7 @@ export default function BentoGrid({ children }: BentoGridProps) {
       variants={container}
       initial="hidden"
       animate="visible"
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 min-h-full auto-rows-[1fr]"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-min"
     >
       {children}
     </motion.div>

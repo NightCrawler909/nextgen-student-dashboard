@@ -41,7 +41,7 @@ export default function ActivityTile() {
   return (
     <motion.article
       variants={tile}
-      className="relative col-span-1 md:col-span-2 lg:col-span-3 overflow-hidden rounded-2xl border border-border-subtle bg-bg-card p-5 card-grain"
+      className="relative col-span-1 md:col-span-2 lg:col-span-2 overflow-hidden rounded-2xl border border-border-subtle bg-bg-card p-5 card-grain"
     >
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent to-accent-cyan/[0.03] pointer-events-none" />
 
@@ -58,8 +58,8 @@ export default function ActivityTile() {
           </div>
         </header>
 
-        <figure className="overflow-x-auto" aria-label="Activity contribution grid">
-          <div className="flex gap-[3px]">
+        <figure className="w-full" aria-label="Activity contribution grid">
+          <div className="flex justify-between w-full">
             {weeks.map((week, weekIdx) => (
               <div key={weekIdx} className="flex flex-col gap-[3px]">
                 {week.map((day, dayIdx) => {
