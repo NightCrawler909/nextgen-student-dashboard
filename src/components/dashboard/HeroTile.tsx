@@ -13,62 +13,43 @@ export default function HeroTile({ name, streak }: HeroTileProps) {
   return (
     <motion.article
       variants={tile}
-      className="relative col-span-1 md:col-span-2 overflow-hidden rounded-2xl border border-border-subtle bg-bg-card p-6 lg:p-8 card-grain"
+      className="col-span-1 md:col-span-2 lg:col-span-2 rounded-3xl border border-white/[0.06] bg-[#16161f] p-8 lg:p-12 relative overflow-hidden flex flex-col justify-center min-h-[280px] lg:min-h-[360px]"
     >
       <div
-        className="absolute inset-0 opacity-30 animate-blob-shift rounded-2xl"
-        style={{
-          background:
-            'linear-gradient(135deg, rgba(139,92,246,0.15) 0%, rgba(6,182,212,0.1) 50%, rgba(139,92,246,0.15) 100%)',
-          backgroundSize: '200% 200%',
-        }}
-      />
-
-      <div
-        className="absolute -top-10 -right-10 w-48 h-48 rounded-full opacity-20 blur-3xl pointer-events-none"
+        className="absolute -top-8 -right-8 w-56 h-56 rounded-full opacity-20 blur-3xl pointer-events-none"
         style={{
           background: 'radial-gradient(circle, #8b5cf6 0%, #06b6d4 100%)',
           animation: 'blob-drift 8s ease-in-out infinite alternate',
         }}
       />
-      <div className="absolute -bottom-16 -left-16 w-40 h-40 rounded-full bg-accent-cyan/8 blur-3xl pointer-events-none" />
 
-      <div className="relative z-10">
-        <header className="mb-4">
-          <h2 className="text-2xl lg:text-3xl font-semibold tracking-tight text-text-primary mb-1">
-            Welcome back, {name} 👋
-          </h2>
-          <p className="text-sm text-text-secondary">
-            Keep up the momentum — your consistency is paying off.
-          </p>
-        </header>
-
-        <div className="flex items-center gap-6 mt-6">
-          <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-accent-violet-dim border border-accent-violet/20">
-            <motion.div
-              animate={{
-                scale: [1, 1.2, 1],
-                rotate: [0, -10, 10, 0],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                repeatDelay: 3,
-              }}
-            >
-              <Flame size={22} className="text-orange-400" />
-            </motion.div>
-            <div>
-              <p className="text-lg font-semibold text-text-primary leading-none">{streak}</p>
-              <p className="text-[11px] text-text-secondary mt-0.5">day streak</p>
+      <div className="relative z-10 px-2 lg:px-4">
+        <h1 className="text-3xl lg:text-5xl font-bold text-white mb-4 lg:mb-6 tracking-tight">
+          Welcome back, {name} 👋
+        </h1>
+        <p className="text-base lg:text-lg text-white/50 mb-10 lg:mb-14 max-w-xl leading-relaxed">
+          Keep up the momentum — your consistency is paying off.
+        </p>
+        <div className="flex items-center gap-8 lg:gap-12">
+          <div className="flex items-center gap-4 lg:gap-6">
+            <div className="p-3 lg:p-5 rounded-3xl bg-orange-500/10">
+              <Flame className="text-orange-400 w-6 h-6 lg:w-8 lg:h-8" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">{streak}</span>
+              <span className="text-sm lg:text-base text-white/40 font-medium uppercase tracking-wider mt-1">day streak</span>
             </div>
           </div>
+          
+          <div className="w-px h-12 lg:h-16 bg-white/[0.06]" />
 
-          <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-accent-cyan-dim border border-accent-cyan/20">
-            <Zap size={20} className="text-accent-cyan" />
-            <div>
-              <p className="text-lg font-semibold text-text-primary leading-none">2,450</p>
-              <p className="text-[11px] text-text-secondary mt-0.5">XP earned</p>
+          <div className="flex items-center gap-4 lg:gap-6">
+            <div className="p-3 lg:p-5 rounded-3xl bg-yellow-500/10">
+              <Zap className="text-yellow-400 w-6 h-6 lg:w-8 lg:h-8" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">2,450</span>
+              <span className="text-sm lg:text-base text-white/40 font-medium uppercase tracking-wider mt-1">XP earned</span>
             </div>
           </div>
         </div>

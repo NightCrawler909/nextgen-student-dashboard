@@ -13,11 +13,11 @@ export default function ProgressBar({ progress }: ProgressBarProps) {
 
   return (
     <section aria-label={`Progress: ${progress}%`}>
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-xs text-text-secondary">Progress</span>
-        <span className="text-xs font-medium text-text-primary">{progress}%</span>
+      <div className="flex items-center justify-between mb-3 lg:mb-4">
+        <span className="text-sm lg:text-base text-text-secondary font-medium">Progress</span>
+        <span className="text-sm lg:text-base font-semibold text-text-primary">{progress}%</span>
       </div>
-      <div ref={ref} className="h-1.5 w-full rounded-full bg-white/[0.06] overflow-hidden">
+      <div ref={ref} className="h-2.5 lg:h-3 w-full rounded-full bg-white/[0.06] overflow-hidden">
         <motion.div
           className="h-full rounded-full bg-gradient-to-r from-accent-violet to-accent-cyan"
           initial={{ scaleX: 0 }}

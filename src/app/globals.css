@@ -38,11 +38,7 @@
   --text-muted: #4a4860;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
 
 body {
   background: var(--bg-base);
@@ -102,4 +98,9 @@ body {
 @keyframes blob-drift {
   from { transform: translate(0, 0) scale(1); }
   to   { transform: translate(20px, -15px) scale(1.1); }
+}
+
+@keyframes blob-drift {
+  from { transform: translate(0px, 0px) scale(1); }
+  to   { transform: translate(20px, -15px) scale(1.15); }
 }
