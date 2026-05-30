@@ -41,7 +41,7 @@ export default function ActivityTile() {
   return (
     <motion.article
       variants={tile}
-      className="relative overflow-hidden rounded-2xl border border-border-subtle bg-bg-card p-5 card-grain"
+      className="relative col-span-1 md:col-span-2 lg:col-span-3 overflow-hidden rounded-2xl border border-border-subtle bg-bg-card p-5 card-grain"
     >
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent to-accent-cyan/[0.03] pointer-events-none" />
 

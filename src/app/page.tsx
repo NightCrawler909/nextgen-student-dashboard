@@ -46,14 +46,16 @@ export default async function DashboardPage() {
   return (
     <div className="flex h-screen bg-bg-base overflow-hidden">
       <Sidebar />
-      <main className="flex-1 overflow-y-auto p-4 md:p-6 pb-24 md:pb-6">
-        <BentoGrid>
-          <HeroTile name="Alex" streak={14} />
-          <Suspense fallback={<Skeletons />}>
-            <CoursesSection />
-          </Suspense>
-          <ActivityTile />
-        </BentoGrid>
+      <main className="flex-1 min-w-0 flex flex-col overflow-y-auto p-4 md:p-6 pb-24 md:pb-6">
+        <div className="flex-1">
+          <BentoGrid>
+            <HeroTile name="Alex" streak={14} />
+            <Suspense fallback={<Skeletons />}>
+              <CoursesSection />
+            </Suspense>
+            <ActivityTile />
+          </BentoGrid>
+        </div>
       </main>
     </div>
   );
