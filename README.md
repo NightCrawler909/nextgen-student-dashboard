@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Student Learning Dashboard
+
+A personal project I built as part of a frontend internship assignment. It's a dark-mode dashboard
+for tracking learning progress, built with Next.js, Supabase, Tailwind, and Framer Motion.
+
+## Tech Stack
+
+- Next.js (App Router)
+- Supabase (PostgreSQL)
+- Tailwind CSS
+- Framer Motion
+- TypeScript
+- Lucide React
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repo
+2. Run `npm install`
+3. Copy `.env.example` to `.env.local` and add your Supabase credentials
+4. Run the SQL in `supabase-setup.sql` in your Supabase SQL editor
+5. Run `npm run dev`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Architecture
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Why Server Components for data fetching?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+I wanted the Supabase fetch to happen on the server so the data arrives already rendered — no loading
+flash, no client-side fetch overhead. `page.tsx` is a Server Component that fetches courses and passes
+them as props. Client components like BentoGrid and CourseTile handle the animations.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### How I handled the server/client split
 
-## Learn More
+Anything that touches Framer Motion or browser events is marked `'use client'`. Everything else stays
+as a server component to keep the bundle small. CourseGrid is a good example — it just maps data to
+CourseTile components, so it doesn't need to be a client component even though CourseTile is one.
 
-To learn more about Next.js, take a look at the following resources:
+### Animation approach
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+I kept all animations on transform and opacity to avoid layout shifts. Framer Motion's spring physics
+(stiffness: 300, damping: 20) gave the hover cards a natural feel without looking over-engineered.
+The sidebar uses `layoutId` for the active indicator so it slides smoothly between nav items.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Challenges
 
-## Deploy on Vercel
+Getting the `@supabase/ssr` cookie API to work with Next.js's async `cookies()` took a bit of
+debugging. Also had to be careful with the Framer Motion stagger — the child components need to
+have `variants` defined or the stagger silently does nothing, which was confusing at first.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Environment Variables
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See `.env.example` for required keys.
