@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Activity } from 'lucide-react';
 import { tile } from './BentoGrid';
@@ -26,7 +26,12 @@ function mockActivity(): ActivityDay[] {
 }
 
 export default function ActivityTile() {
+  const [mounted, setMounted] = useState(false);
   const activityData = useMemo(() => mockActivity(), []);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const weeks: ActivityDay[][] = [];
   for (let w = 0; w < WEEKS; w++) {
@@ -57,21 +62,28 @@ export default function ActivityTile() {
           <div className="flex gap-[3px]">
             {weeks.map((week, weekIdx) => (
               <div key={weekIdx} className="flex flex-col gap-[3px]">
-                {week.map((day, dayIdx) => (
-                  <motion.div
-                    key={`${weekIdx}-${dayIdx}`}
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{
-                      delay: 0.4 + (weekIdx * DAYS_PER_WEEK + dayIdx) * 0.008,
-                      type: 'spring',
-                      stiffness: 400,
-                      damping: 20,
-                    }}
-                    className={`w-3 h-3 rounded-sm ${intensityColors[day.count]} transition-colors`}
-                    title={`${new Date(day.date).toLocaleDateString()}: ${day.count} contributions`}
-                  />
-                ))}
+                {week.map((day, dayIdx) => {
+                  const count = mounted ? day.count : 0;
+                  const title = mounted
+                    ? `${new Date(day.date).toLocaleDateString()}: ${count} contributions`
+                    : 'Loading...';
+
+                  return (
+                    <motion.div
+                      key={`${weekIdx}-${dayIdx}`}
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{
+                        delay: 0.4 + (weekIdx * DAYS_PER_WEEK + dayIdx) * 0.008,
+                        type: 'spring',
+                        stiffness: 400,
+                        damping: 20,
+                      }}
+                      className={`w-3 h-3 rounded-sm ${intensityColors[count]} transition-colors`}
+                      title={title}
+                    />
+                  );
+                })}
               </div>
             ))}
           </div>
